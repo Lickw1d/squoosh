@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "squoosh-cli",
+  "version": "0.1.0",
+  "description": "Command-line image compression using Squoosh's codecs and settings",
+  "license": "apache-2.0",
+  "type": "module",
+  "bin": {
+    "squoosh": "./bin/squoosh.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/clean.mjs && tsc -p tsconfig.json && node scripts/copy-codecs.mjs",
+    "test": "npm run build && node --test dist/cli/test/*.test.js",
+    "start": "node bin/squoosh.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "~5.6.3"
+  }
+}

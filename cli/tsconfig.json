@@ -1,0 +1,26 @@
+{
+  // The CLI compiles on its own, separate from the web app's Rollup build.
+  // rootDir is the repo root so that the app's shared feature metadata
+  // (src/features/*/*/shared/meta.ts) is compiled in as the single source of
+  // truth for option types and defaults.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM"],
+    "types": ["node"],
+    "strict": true,
+    "skipLibCheck": true,
+    "rootDir": "..",
+    "outDir": "dist",
+    "baseUrl": "..",
+    "paths": {
+      "codecs/*": ["codecs/*"]
+    },
+    // Must stay off: the app's meta files import `const enum`s from codec
+    // .d.ts files, which only works when tsc can inline them.
+    "isolatedModules": false,
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts", "../emscripten-types.d.ts"]
+}
